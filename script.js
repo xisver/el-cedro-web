@@ -70,6 +70,7 @@
       navigation.inert = !desktop.matches && !isOpen;
       if (!desktop.matches && !isOpen) navigation.setAttribute('aria-hidden', 'true');
       else navigation.removeAttribute('aria-hidden');
+      if (isOpen) navigation.querySelector('a[href]')?.focus({ preventScroll: true });
       if (returnFocus) menuButton.focus({ preventScroll: true });
     };
 

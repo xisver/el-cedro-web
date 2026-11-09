@@ -39,11 +39,11 @@ WhatsApp: `+52 735 200 0745`. Teléfono: `+52 735 398 7070`. Correo: `contacto@c
 
 ## Publicación en GitHub Pages
 
-Repositorio previsto: [xisver/el-cedro-web](https://github.com/xisver/el-cedro-web).
+Repositorio: [xisver/el-cedro-web](https://github.com/xisver/el-cedro-web).
 
-En **Settings → Pages**, seleccionar **Deploy from a branch**, rama **main**, carpeta **/ (root)**. El archivo `.nojekyll` permite servir directamente los archivos estáticos. Las rutas relativas admiten la publicación bajo la subruta del repositorio.
+Configuración aplicada en **Settings → Pages**: **Deploy from a branch**, rama **main**, carpeta **/ (root)**. El archivo `.nojekyll` permite servir directamente los archivos estáticos. Las rutas relativas admiten la publicación bajo la subruta del repositorio. Cada cambio publicado en `main` actualiza la página automáticamente.
 
-URL prevista: [https://xisver.github.io/el-cedro-web/](https://xisver.github.io/el-cedro-web/). Su estado de publicación debe comprobarse después del despliegue.
+URL: [https://xisver.github.io/el-cedro-web/](https://xisver.github.io/el-cedro-web/). El progreso de las actualizaciones se consulta en [Actions](https://github.com/xisver/el-cedro-web/actions). Las comprobaciones realizadas se documentan en [QA.md](QA.md).
 
 ## Fuentes y actualización del contenido
 
