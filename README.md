@@ -19,6 +19,7 @@ El sitio usa HTML, CSS y JavaScript nativos. No necesita instalación de paquete
 - Paleta institucional basada en verde cedro, marfil y dorado.
 - Modo claro y oscuro: al iniciar sigue la preferencia del sistema; la elección del visitante se guarda en el navegador mediante `localStorage`.
 - Revelado al desplazar, movimiento sutil de la imagen de portada e indicador de avance de lectura.
+- Secciones como tarjetas superpuestas: la siguiente sube sobre la anterior y oscurece gradualmente la que queda debajo. Las secciones largas se desplazan completas antes de fijarse.
 - Respeto de la preferencia de movimiento reducido; el contenido también puede consultarse cuando JavaScript no está disponible.
 - Navegación móvil, enlace para saltar al contenido, controles con nombres accesibles y preguntas desplegables nativas.
 
@@ -27,6 +28,7 @@ El sitio usa HTML, CSS y JavaScript nativos. No necesita instalación de paquete
 - `index.html`: contenido y estructura de la página.
 - `styles.css`: diseño, temas y adaptaciones de tamaño.
 - `script.js`: navegación, tema e interacciones de desplazamiento.
+- `stack.js` y `stack.css`: apilado de las seis tarjetas, oscurecimiento y navegación entre secciones superpuestas.
 - `assets/`: fotografías, escudo, distintivos y fuentes recuperados de rutas públicas.
 - `assets/SOURCES.md`: procedencia de los recursos.
 - `content-audit.md`: inventario del contenido y los enlaces del original.

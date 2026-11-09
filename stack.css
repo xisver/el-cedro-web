@@ -1,0 +1,79 @@
+/* Opaque section cards keep earlier content visible beneath the arriving card. */
+.card-stack {
+  --stack-gap:40px;
+  position:relative;
+  isolation:isolate;
+  padding:24px clamp(10px, 1.65vw, 28px) 32px;
+  background:#dfe5d8;
+}
+[data-theme="dark"] .card-stack {
+  background:#080f0b;
+}
+.stack-anchor {
+  height:0;
+  pointer-events:none;
+}
+.stack-card {
+  position:relative;
+  isolation:isolate;
+  z-index:var(--stack-order, 1);
+  margin:0 0 var(--stack-gap);
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:var(--bg);
+  box-shadow:0 -8px 36px #071c1018;
+}
+.stack-ready .stack-card {
+  position:sticky;
+  top:var(--stack-top, 105px);
+}
+.stack-card:last-child {
+  margin-bottom:0;
+}
+.stack-card.levels {
+  background:var(--tint);
+}
+.stack-card.contact {
+  background:#173e2f;
+}
+.stack-card::after {
+  content:"";
+  position:absolute;
+  inset:-1px;
+  z-index:40;
+  border-radius:inherit;
+  background:#020805;
+  opacity:var(--stack-dim, 0);
+  pointer-events:none;
+}
+.stack-intro .credentials {
+  border-bottom:0;
+  border-radius:0 0 29px 29px;
+}
+footer {
+  position:relative;
+  z-index:1;
+  background:var(--bg);
+}
+@media (max-width:700px) {
+  .card-stack {
+    --stack-gap:28px;
+    padding:14px 8px 22px;
+  }
+  .stack-card {
+    border-radius:22px;
+    box-shadow:0 -6px 24px #071c1024;
+  }
+  .stack-intro .credentials {
+    border-radius:0 0 21px 21px;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  .stack-ready .stack-card {
+    position:relative;
+    top:auto;
+  }
+  .stack-card::after {
+    opacity:0;
+  }
+}
