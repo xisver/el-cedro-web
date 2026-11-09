@@ -382,6 +382,9 @@ a,button,summary {
 .hero h1 em {
   display:block;
 }
+.title-group {
+  white-space:nowrap;
+}
 .hero-intro {
   font-size:17px;
   line-height:1.6;
