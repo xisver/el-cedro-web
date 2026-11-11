@@ -150,6 +150,7 @@
 
     const updateCurrentLinks = (records, threshold) => {
       if (!records.length) return;
+      if (root.classList.contains('scene-ready') && records[0].anchors[0].hasAttribute('data-level-link')) return;
       let current = null;
       for (const record of records) {
         if (record.target.getBoundingClientRect().top <= threshold) current = record;

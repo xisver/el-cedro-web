@@ -19,9 +19,12 @@ El sitio usa HTML, CSS y JavaScript nativos. No necesita instalación de paquete
 - Paleta institucional basada en verde cedro, marfil y dorado.
 - Modo claro y oscuro: al iniciar sigue la preferencia del sistema; la elección del visitante se guarda en el navegador mediante `localStorage`.
 - Revelado al desplazar, movimiento sutil de la imagen de portada e indicador de avance de lectura.
-- Secciones como tarjetas superpuestas: la siguiente sube sobre la anterior y oscurece gradualmente la que queda debajo. Las secciones largas se desplazan completas antes de fijarse.
+- Secciones como tarjetas superpuestas, ajustadas al espacio disponible bajo el menú. La siguiente sube sobre la anterior y oscurece la que queda debajo. El texto que lo necesita conserva una zona de lectura desplazable.
+- Niveles educativos: un solo nivel visible por pantalla; cada nuevo gesto de scroll cambia al siguiente, además de pestañas y botones para elegir directamente.
+- Preguntas frecuentes: carrete vertical con la pregunta central ampliada, respuesta visible y preguntas vecinas reducidas.
+- Logo original de XisSoft Development, tomado del proyecto Cotizador, en el pie de página.
 - Respeto de la preferencia de movimiento reducido; el contenido también puede consultarse cuando JavaScript no está disponible.
-- Navegación móvil, enlace para saltar al contenido, controles con nombres accesibles y preguntas desplegables nativas.
+- Navegación móvil, teclado, enlace para saltar al contenido y controles con nombres accesibles. Sin JavaScript, con movimiento reducido o en ventanas de menos de 520 px de alto, se conserva la lectura continua de todos los contenidos.
 
 ## Estructura
 
@@ -29,6 +32,10 @@ El sitio usa HTML, CSS y JavaScript nativos. No necesita instalación de paquete
 - `styles.css`: diseño, temas y adaptaciones de tamaño.
 - `script.js`: navegación, tema e interacciones de desplazamiento.
 - `stack.js` y `stack.css`: apilado de las seis tarjetas, oscurecimiento y navegación entre secciones superpuestas.
+- `scenes.css`: ajuste de las tarjetas a la altura disponible de la pantalla.
+- `levels.js` y `levels.css`: presentación individual de los cinco niveles académicos.
+- `faq-reel.js` y `faq-reel.css`: carrete vertical de las 14 preguntas.
+- `footer.css` y `assets/branding/`: crédito visual de XisSoft.
 - `assets/`: fotografías, escudo, distintivos y fuentes recuperados de rutas públicas.
 - `assets/SOURCES.md`: procedencia de los recursos.
 - `content-audit.md`: inventario del contenido y los enlaces del original.

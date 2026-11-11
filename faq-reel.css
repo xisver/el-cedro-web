@@ -1,0 +1,288 @@
+/* Applied only inside the full-height scene experience; native details are the fallback. */
+.faq-reel[hidden],
+.faq-reel [hidden],
+.faq-reel-enabled .faq-list > details[hidden] {
+  display:none!important;
+}
+.scene-ready #faq.faq-reel-enabled > .faq-layout {
+  display:grid;
+  grid-template-columns:minmax(220px, .82fr) minmax(0, 1.18fr);
+  align-items:stretch;
+  gap:clamp(26px, 5vw, 76px);
+  height:100%;
+  min-height:0;
+}
+.scene-ready #faq.faq-reel-enabled .faq-intro {
+  position:static;
+  align-self:center;
+  max-height:100%;
+  overflow:auto;
+}
+.scene-ready #faq.faq-reel-enabled .faq-list {
+  min-height:0;
+  height:100%;
+  opacity:1;
+  transform:none;
+}
+.faq-reel {
+  --faq-step:180px;
+  --faq-card-height:280px;
+  display:grid;
+  grid-template-rows:minmax(0, 1fr) auto;
+  height:100%;
+  min-height:0;
+  isolation:isolate;
+}
+.faq-reel-track {
+  position:relative;
+  min-height:0;
+  overflow:hidden;
+  border-block:1px solid var(--line);
+}
+.faq-reel-card {
+  position:absolute;
+  top:50%;
+  left:0;
+  width:100%;
+  max-height:var(--faq-card-height);
+  margin:0;
+  padding:20px 24px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  border:1px solid transparent;
+  border-radius:12px;
+  transform:translate3d(0, calc(-50% + var(--faq-offset, 0) * var(--faq-step)), 0) scale(var(--faq-scale, 1));
+  transform-origin:center;
+  opacity:var(--faq-opacity, 1);
+  transition:transform .5s cubic-bezier(.22,.7,.24,1), opacity .4s ease, background-color .4s ease, border-color .4s ease;
+  will-change:transform,opacity;
+  overflow:hidden;
+}
+.faq-reel-card.is-current {
+  z-index:3;
+  background:var(--surface);
+  border-color:var(--line);
+  box-shadow:0 8px 28px #0c26100a;
+}
+.faq-reel-card.is-neighbor {
+  z-index:2;
+  padding-block:10px;
+}
+.faq-reel-card.is-neighbor:hover,
+.faq-reel-card.is-neighbor:focus-within {
+  opacity:.85;
+}
+.faq-reel-card.is-distant {
+  visibility:hidden;
+  pointer-events:none;
+}
+.faq-reel-question {
+  flex-shrink:0;
+  margin:0;
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:clamp(22px, 2.1vw, 30px);
+  font-weight:400;
+  letter-spacing:-.025em;
+  line-height:1.2;
+}
+.faq-reel-question:focus {
+  outline-offset:3px;
+}
+.faq-reel-select {
+  display:block;
+  width:100%;
+  padding:3px;
+  border:0;
+  background:none;
+  color:inherit;
+  font:inherit;
+  letter-spacing:inherit;
+  line-height:inherit;
+  text-align:left;
+  cursor:pointer;
+}
+.faq-reel-select:focus-visible {
+  outline-offset:-2px;
+}
+.faq-reel-answer {
+  min-height:0;
+  overflow:auto;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  scrollbar-color:var(--line) transparent;
+  padding:0 5px 0 0;
+  color:var(--text);
+  font-size:14px;
+  line-height:1.8;
+}
+.faq-reel-answer p {
+  margin:0;
+  padding:0;
+  font-size:inherit;
+  color:inherit;
+  line-height:inherit;
+}
+.faq-reel-answer p + p {
+  margin-top:12px;
+}
+.faq-reel-answer:focus-visible {
+  outline-offset:-2px;
+}
+.faq-reel-controls {
+  display:flex;
+  align-items:center;
+  gap:13px;
+  min-height:57px;
+  padding-top:10px;
+}
+.faq-reel-arrow {
+  display:grid;
+  place-items:center;
+  width:36px;
+  height:36px;
+  flex-shrink:0;
+  border:1px solid var(--line);
+  border-radius:50%;
+  color:var(--ink);
+  background:var(--surface);
+  font-size:18px;
+  line-height:1;
+  transition:background-color .2s ease,opacity .2s ease;
+}
+.faq-reel-arrow:hover:not(:disabled) {
+  background:var(--tint);
+}
+.faq-reel-arrow:disabled {
+  cursor:default;
+  opacity:.3;
+}
+.faq-reel-counter {
+  min-width:51px;
+  text-align:center;
+  color:var(--green);
+  font-size:10px;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.09em;
+}
+.faq-reel-hint {
+  margin-left:auto;
+  text-align:right;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:.025em;
+}
+.faq-reel--compact .faq-reel-card {
+  gap:9px;
+  padding:12px 15px;
+}
+.faq-reel--compact .faq-reel-question {
+  font-size:18px;
+  line-height:1.15;
+}
+.faq-reel--compact .is-neighbor .faq-reel-select {
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  font-size:16px;
+}
+.faq-reel--compact .faq-reel-answer {
+  font-size:12px;
+  line-height:1.65;
+}
+@media(max-width:900px) {
+  .scene-ready #faq.faq-reel-enabled > .faq-layout {
+    grid-template-columns:minmax(180px, .75fr) minmax(0, 1.25fr);
+    gap:24px;
+  }
+  .scene-ready #faq.faq-reel-enabled .faq-intro h2 {
+    font-size:clamp(28px, 4vw, 38px);
+  }
+  .faq-reel-card {
+    padding:18px;
+    gap:12px;
+  }
+  .faq-reel-answer {
+    font-size:13px;
+  }
+  .faq-reel-hint {
+    max-width:94px;
+  }
+}
+@media(max-width:700px) {
+  .scene-ready #faq.faq-reel-enabled > .faq-layout {
+    grid-template-columns:minmax(0, 1fr);
+    grid-template-rows:auto minmax(0, 1fr);
+    gap:13px;
+  }
+  .scene-ready #faq.faq-reel-enabled .faq-intro {
+    align-self:start;
+    overflow:visible;
+  }
+  .scene-ready #faq.faq-reel-enabled .faq-intro .eyebrow {
+    margin-bottom:7px;
+    font-size:8px;
+  }
+  .scene-ready #faq.faq-reel-enabled .faq-intro h2 {
+    font-size:clamp(25px, 7vw, 34px);
+    line-height:1.08;
+  }
+  .scene-ready #faq.faq-reel-enabled .faq-intro h2 br {
+    display:none;
+  }
+  .scene-ready #faq.faq-reel-enabled .faq-intro h2 em::before {
+    content:' ';
+    white-space:pre;
+  }
+  .scene-ready #faq.faq-reel-enabled .faq-intro > p:not(.eyebrow) {
+    margin-top:9px;
+    font-size:11px;
+    line-height:1.55;
+    max-width:100%;
+  }
+  .scene-ready #faq.faq-reel-enabled .faq-intro > .text-link {
+    margin-top:9px;
+    font-size:10px;
+  }
+  .faq-reel-question {
+    font-size:22px;
+  }
+  .faq-reel-card {
+    padding:17px;
+    gap:12px;
+  }
+  .faq-reel-card.is-neighbor {
+    padding-block:8px;
+  }
+  .faq-reel-controls {
+    min-height:49px;
+    gap:11px;
+    padding-top:8px;
+  }
+  .faq-reel-arrow {
+    width:33px;
+    height:33px;
+    font-size:17px;
+  }
+  .faq-reel-hint {
+    max-width:none;
+    font-size:8px;
+  }
+}
+@media(max-width:700px) and (max-height:650px) {
+  .scene-ready #faq.faq-reel-enabled .faq-intro > p:not(.eyebrow),
+  .scene-ready #faq.faq-reel-enabled .faq-intro > .text-link {
+    display:none;
+  }
+  .scene-ready #faq.faq-reel-enabled .faq-intro h2 {
+    font-size:25px;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .faq-reel-card,
+  .faq-reel-arrow {
+    transition:none;
+    will-change:auto;
+  }
+}

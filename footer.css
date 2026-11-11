@@ -1,0 +1,29 @@
+/* The original XisSoft artwork includes its own dark background. */
+footer .development-credit {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+footer .development-credit img {
+  display: block;
+  width: 148px;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+
+@media (max-width: 640px) {
+  footer .development-credit {
+    justify-content: flex-start;
+    margin-top: 16px;
+  }
+}

@@ -1,12 +1,12 @@
 # Verificación del rediseño
 
-Fecha: 9 de noviembre de 2026.
+Primera revisión: 9 de noviembre de 2026. Actualización de escenas: 11 de noviembre de 2026.
 
 ## Contenido y recursos
 
 - Cinco niveles: Maternal, Preescolar, Primaria, Secundaria y Bachillerato.
 - Se conservaron los talleres por nivel, las 14 preguntas frecuentes, los contactos y los destinos relevantes del original.
-- La auditoría de 64 referencias de recursos y enlaces no encontró rutas locales ni fragmentos rotos o identificadores duplicados. Todas las imágenes conservan atributo `alt`.
+- La auditoría actual de 71 referencias de recursos y enlaces no encontró rutas locales ni fragmentos rotos o identificadores duplicados. Las 26 imágenes conservan atributo `alt`.
 - Los recursos visuales se sirven desde el repositorio; su procedencia está en `assets/SOURCES.md`.
 - WhatsApp y teléfono fijo se conservaron como números distintos, tal como están publicados.
 
@@ -32,7 +32,7 @@ Se usaron ventanas de 1440 × 1000 (escritorio), 768 × 1024 (tableta), 390 × 8
 
 Las pruebas de tamaño se hicieron en navegador, sin dispositivos físicos. No se enviaron mensajes ni se hicieron llamadas a los contactos del centro. El sitio original y su alojamiento no se modificaron.
 
-## Tarjetas que se superponen
+## Primera versión de tarjetas (9 de noviembre)
 
 - Seis tarjetas: Inicio, Proyecto, Niveles, Talleres, Preguntas y Contacto.
 - Superposición y oscurecimiento progresivo inspeccionados en escritorio (1440 × 1000) y móvil (390 × 844), sin desbordamiento horizontal.
@@ -41,3 +41,17 @@ Las pruebas de tamaño se hicieron en navegador, sin dispositivos físicos. No s
 - Salto Contacto → Proyecto → Niveles y navegación a Bachillerato comprobados. Las secciones quedan bajo el encabezado y el nivel elegido bajo su navegación interna.
 - Se revisó que el cambio de altura, el modo oscuro y movimiento reducido mantengan el comportamiento accesible. Movimiento reducido conserva las tarjetas estáticas, sin fijación ni oscurecimiento.
 - `node --check stack.js` pasó. Sin JavaScript se conserva la lectura normal de las tarjetas.
+
+## Escenas ajustadas a pantalla (11 de noviembre)
+
+- Estado previo: rama `main` sincronizada con `origin/main` en `347f8bf`, sin cambios locales pendientes. El crédito XisSoft solicitado aún no estaba implementado.
+- Logo XisSoft copiado del Cotizador local y verificado sin alteraciones. Visible en el footer, sin inventar un enlace de marca.
+- En 1366 × 900, cada una de las seis tarjetas mide 780 px; el nivel queda entre y=106 y y=886, bajo el encabezado.
+- En 390 × 844, el nivel queda entre y=82 y y=836. Sin desbordamiento horizontal.
+- Un gesto de rueda cambió Maternal → Preescolar manteniendo la misma posición de página. Solo el nivel activo queda visible y accesible; el texto largo puede leerse antes de pasar al siguiente.
+- Navegación móvil Contacto → Niveles comprobada tras corregir el ajuste del viewport y la restauración del scroll.
+- Carrete de 14 preguntas: escala central 1 y vecinas 0.78; gesto de rueda sobre encabezado avanza a la siguiente pregunta sin mover la sección.
+- Se recorrieron los controles hasta 14/14; un nuevo gesto pasó a Contacto, con el hash y la alineación correctos.
+- En 844 × 390 se desactiva el modo de escenas: los cinco niveles y las 14 preguntas nativas quedan disponibles en lectura continua, sin recortes.
+- Redimensionamiento, modo oscuro, controles de teclado, enlaces profundos y lectura de contenido largo revisados. Los gestos táctiles se revisaron en el código; no se usó dispositivo físico.
+- `node --check` pasó para `script.js`, `stack.js`, `levels.js` y `faq-reel.js`. No se observaron errores de la aplicación en consola durante las pruebas.

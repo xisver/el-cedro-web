@@ -1,5 +1,9 @@
 # Fuentes de los recursos públicos
 
+## Crédito de desarrollo XisSoft
+
+`branding/xissoft-development.png` se copió sin cambios del proyecto local Cotizador: `C:/Users/PC/Documents/ChatGPT/COTIZADOR/frontend/public/xissoft-development.png`, por instrucción del usuario el 11 de noviembre de 2026. Es la misma imagen utilizada en el pie de página de ese proyecto, con el texto «Desarrollado por» y sin enlace externo. Conserva el fondo oscuro y las proporciones de la imagen original; no pertenece a los recursos del colegio.
+
 Recuperados el 9 de noviembre de 2026 del sitio público solicitado por el usuario. Se conservaron los archivos originales sin modificarlos. No se accedió a archivos privados ni se modificó el servidor original. El HTML/CSS/JS de la recreación se desarrolla por separado.
 
 Las fotografías e identidad pertenecen a sus titulares; su disponibilidad pública no equivale a una licencia abierta. Se incluyen para la recreación solicitada del mismo centro. Comic Neue incluye su licencia SIL OFL en `fonts/OFL.txt`.
