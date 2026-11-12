@@ -67,13 +67,14 @@
     entryTarget = level?.id || target.id || card.element.dataset.stackCard;
     entrySource = source;
     history.replaceState(null, '', `#${entryTarget}`);
+    const previousFocusGuard = movingFocus;
+    movingFocus = true;
     if (level) card.element.dispatchEvent(new CustomEvent('cedro:select-level', { detail: { id: level.id } }));
     if (focus) {
-      movingFocus = true;
       if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
       target.focus({ preventScroll: true });
-      movingFocus = false;
     }
+    movingFocus = previousFocusGuard;
     movingUntil = performance.now() + (smooth ? 650 : 0);
     navigationIndex = card.index;
     window.scrollTo({ top: destination(card), behavior: smooth ? 'smooth' : 'instant' });
@@ -108,6 +109,7 @@
     return direction > 0 ? element.scrollTop < element.scrollHeight - element.clientHeight - 2 : element.scrollTop > 2;
   };
   const readingArea = (target, card, direction) => {
+    if (card.element.id === 'faq' && !target.closest('.faq-reel')) return null;
     for (let element = target; element && card.element.contains(element); element = element.parentElement) {
       if (canRead(element, direction)) return element;
     }
@@ -138,7 +140,7 @@
   }, { passive: false });
 
   document.addEventListener('touchstart', event => {
-    if (enabled() && event.touches.length === 1 && event.target.closest('main,footer,header')) {
+    if (enabled() && event.touches.length === 1 && event.target.closest('main,footer,header') && !event.target.closest('.faq-reel')) {
       touch = { x: event.touches[0].clientX, y: event.touches[0].clientY, lastY: event.touches[0].clientY, target: event.target, used: false, reading: false };
     }
   }, { passive: true });

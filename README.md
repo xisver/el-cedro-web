@@ -2,6 +2,8 @@
 
 Recreación del sitio público del Centro Educativo El Cedro, Cuautla, Morelos, con una presentación moderna, adaptable y accesible. Conserva el proyecto educativo, los cinco niveles de Maternal a Bachillerato CCH UNAM, los talleres, las preguntas frecuentes y los canales de contacto.
 
+Vista previa local del 12 de noviembre de 2026: las cortinas de niveles y la nueva lista de preguntas están pendientes de revisión y aprobación antes de publicarse. Esta copia se trabaja en la rama local `preview/cortinas-preguntas`.
+
 ## Ver el sitio localmente
 
 Desde esta carpeta, con Python instalado:
@@ -20,8 +22,8 @@ El sitio usa HTML, CSS y JavaScript nativos. No necesita instalación de paquete
 - Modo claro y oscuro: al iniciar sigue la preferencia del sistema; la elección del visitante se guarda en el navegador mediante `localStorage`.
 - Revelado al desplazar, movimiento sutil de la imagen de portada e indicador de avance de lectura.
 - Secciones como tarjetas superpuestas, ajustadas al espacio disponible bajo el menú. La siguiente sube sobre la anterior y oscurece la que queda debajo. El texto que lo necesita conserva una zona de lectura desplazable.
-- Niveles educativos: un solo nivel visible por pantalla; cada nuevo gesto de scroll cambia al siguiente, además de pestañas y botones para elegir directamente.
-- Preguntas frecuentes: carrete vertical con la pregunta central ampliada, respuesta visible y preguntas vecinas reducidas.
+- Niveles educativos: cinco cortinas con imágenes teñidas y nombres verticales. Un clic abre una, aclara su imagen y muestra la información. El scroll no selecciona niveles.
+- Preguntas frecuentes: varias preguntas visibles a la vez. La rueda desplaza únicamente la lista cuando el puntero está sobre ella; las respuestas se abren solo con clic. Solo una pregunta se amplía y expande su respuesta.
 - Logo original de XisSoft Development, tomado del proyecto Cotizador, en el pie de página.
 - Respeto de la preferencia de movimiento reducido; el contenido también puede consultarse cuando JavaScript no está disponible.
 - Navegación móvil, teclado, enlace para saltar al contenido y controles con nombres accesibles. Sin JavaScript, con movimiento reducido o en ventanas de menos de 520 px de alto, se conserva la lectura continua de todos los contenidos.
@@ -33,8 +35,8 @@ El sitio usa HTML, CSS y JavaScript nativos. No necesita instalación de paquete
 - `script.js`: navegación, tema e interacciones de desplazamiento.
 - `stack.js` y `stack.css`: apilado de las seis tarjetas, oscurecimiento y navegación entre secciones superpuestas.
 - `scenes.css`: ajuste de las tarjetas a la altura disponible de la pantalla.
-- `levels.js` y `levels.css`: presentación individual de los cinco niveles académicos.
-- `faq-reel.js` y `faq-reel.css`: carrete vertical de las 14 preguntas.
+- `levels.js` y `levels.css`: cortinas interactivas de los cinco niveles académicos.
+- `faq-reel.js` y `faq-reel.css`: lista independiente con 14 preguntas y selección por clic.
 - `footer.css` y `assets/branding/`: crédito visual de XisSoft.
 - `assets/`: fotografías, escudo, distintivos y fuentes recuperados de rutas públicas.
 - `assets/SOURCES.md`: procedencia de los recursos.

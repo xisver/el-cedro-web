@@ -1,106 +1,101 @@
-/* One academic level at a time; every original article remains available. */
+/* Click-to-open academic curtains. Scrolling never chooses a level. */
 (() => {
   'use strict';
-  const root = document.documentElement;
   const section = document.getElementById('niveles');
   const navigation = section?.querySelector('.level-navigation');
   const panels = [...(section?.querySelectorAll('article.level') || [])];
-  const tabs = [...(navigation?.querySelectorAll('[data-level-link]') || [])];
-  if (panels.length !== 5 || tabs.length !== panels.length) return;
-  const deck = document.createElement('div');
-  deck.className = 'level-deck';
-  panels[0].before(deck);
-  panels.forEach(panel => {
-    deck.append(panel);
-    panel.querySelector('.level-copy').dataset.sceneScroll = '';
-    panel.querySelector('.level-copy').tabIndex = 0;
+  if (panels.length !== 5) return;
+  const curtains = document.createElement('div');
+  curtains.className = 'level-curtains';
+  curtains.setAttribute('aria-label', 'Niveles educativos, abre una cortina para conocer el nivel');
+  panels[0].before(curtains);
+  const triggers = [];
+  const copies = [];
+  let selected = -1;
+
+  panels.forEach((panel, index) => {
+    const copy = panel.querySelector('.level-copy');
+    const name = panel.querySelector('.pill').textContent.trim();
+    const subtitle = panel.querySelector('.num')?.textContent.trim() || '';
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.id = `curtain-toggle-${panel.id}`;
+    trigger.className = 'curtain-trigger';
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.setAttribute('aria-controls', `curtain-content-${panel.id}`);
+    trigger.setAttribute('aria-label', `Abrir ${name}`);
+    const number = document.createElement('span');
+    number.className = 'curtain-index'; number.textContent = `0${index + 1}`; number.setAttribute('aria-hidden', 'true');
+    const label = document.createElement('span');
+    label.className = 'curtain-label'; label.textContent = name;
+    const note = document.createElement('span');
+    note.className = 'curtain-subtitle'; note.textContent = subtitle;
+    note.id = `curtain-subtitle-${panel.id}`;
+    trigger.setAttribute('aria-describedby', note.id);
+    const sign = document.createElement('span');
+    sign.className = 'curtain-sign'; sign.textContent = '+'; sign.setAttribute('aria-hidden', 'true');
+    trigger.append(number, label, note, sign);
+    panel.prepend(trigger);
+    panel.classList.add('level-curtain', 'is-visible');
+    panel.removeAttribute('data-reveal');
+    copy.id = `curtain-content-${panel.id}`;
+    copy.setAttribute('role', 'region');
+    copy.setAttribute('aria-label', `${name}: proyecto y talleres`);
+    copy.dataset.sceneScroll = '';
+    copy.tabIndex = 0;
+    curtains.append(panel);
+    triggers.push(trigger); copies.push(copy);
+    trigger.addEventListener('click', () => select(selected === index ? -1 : index, true));
   });
   const banner = section.querySelector('.admission-banner');
-  const bannerParent = banner?.parentElement;
-  const controls = document.createElement('div');
-  controls.className = 'level-deck-controls';
-  controls.innerHTML = '<button type="button" data-level-prev aria-label="Nivel anterior">↑</button><p><span data-level-count></span><span class="level-deck-hint">Desplaza para cambiar de nivel</span></p><button type="button" data-level-next aria-label="Nivel siguiente">↓</button>';
-  deck.after(controls);
-  const previous = controls.querySelector('[data-level-prev]');
-  const next = controls.querySelector('[data-level-next]');
-  const count = controls.querySelector('[data-level-count]');
-  count.setAttribute('aria-live', 'polite');
-  let active = 0, ready = false;
+  if (banner) copies[4].append(banner);
+  if (navigation) navigation.hidden = true;
+  section.classList.add('level-curtains-ready');
 
-  const select = (index, { focus = false, updateHash = false } = {}) => {
+  function select(index, updateHash = false) {
     const focused = document.activeElement;
-    const panelHadFocus = panels.some(panel => panel.contains(focused));
-    const previousIndex = active;
-    active = Math.max(0, Math.min(panels.length - 1, index));
-    if (active !== previousIndex) panels[active].querySelector('.level-copy').scrollTop = 0;
-    section.dataset.levelIndex = active;
+    const focusedCopy = copies.findIndex(copy => copy.contains(focused));
+    selected = Math.max(-1, Math.min(panels.length - 1, index));
+    section.dataset.levelIndex = selected;
+    curtains.classList.toggle('has-open-curtain', selected >= 0);
     panels.forEach((panel, i) => {
-      const selected = i === active;
-      panel.classList.toggle('is-level-active', selected);
-      panel.inert = ready && !selected;
-      if (ready && !selected) panel.setAttribute('aria-hidden', 'true');
-      else panel.removeAttribute('aria-hidden');
-      if (ready) panel.setAttribute('role', 'tabpanel'); else panel.removeAttribute('role');
-      tabs[i].classList.toggle('is-active', selected);
-      if (ready) {
-        tabs[i].setAttribute('role', 'tab');
-        tabs[i].setAttribute('aria-selected', String(selected));
-        tabs[i].setAttribute('aria-controls', panel.id);
-        tabs[i].tabIndex = selected ? 0 : -1;
-        if (selected) tabs[i].setAttribute('aria-current', 'location'); else tabs[i].removeAttribute('aria-current');
-      } else {
-        tabs[i].removeAttribute('role'); tabs[i].removeAttribute('aria-selected'); tabs[i].removeAttribute('aria-controls');
-        tabs[i].removeAttribute('tabindex'); tabs[i].removeAttribute('aria-current');
-      }
-      // A hidden reveal observer must not leave the selected panel transparent.
-      if (selected) panel.classList.add('is-visible');
+      const open = i === selected;
+      const name = panel.querySelector('.pill').textContent.trim();
+      panel.classList.toggle('is-curtain-open', open);
+      triggers[i].setAttribute('aria-expanded', String(open));
+      triggers[i].setAttribute('aria-label', `${open ? 'Cerrar' : 'Abrir'} ${name}`);
+      triggers[i].querySelector('.curtain-sign').textContent = open ? '−' : '+';
+      copies[i].hidden = !open;
+      copies[i].inert = !open;
+      if (open) copies[i].scrollTop = 0;
     });
-    previous.disabled = active === 0;
-    next.disabled = active === panels.length - 1;
-    count.textContent = `${String(active + 1).padStart(2, '0')} / 05 · ${tabs[active].textContent.replace(/^\s*\d+\s*/, '').trim()}`;
-    if (updateHash) history.replaceState(null, '', `#${panels[active].id}`);
-    if (focus || panelHadFocus || (focused === previous && previous.disabled) || (focused === next && next.disabled)) {
-      tabs[active].focus({ preventScroll: true });
-    }
+    if (focusedCopy >= 0 && focusedCopy !== selected) triggers[selected >= 0 ? selected : focusedCopy].focus({ preventScroll: true });
+    if (updateHash) history.replaceState(null, '', selected >= 0 ? `#${panels[selected].id}` : '#niveles');
     document.dispatchEvent(new Event('cedro:contentchange'));
-  };
-  const configure = () => {
-    ready = root.classList.contains('scene-ready');
-    section.classList.toggle('level-deck-ready', ready);
-    if (ready) {
-      navigation.setAttribute('role', 'tablist');
-      navigation.setAttribute('aria-label', 'Seleccionar nivel educativo');
-      if (banner) panels[4].querySelector('.level-copy').append(banner);
-    } else {
-      navigation.removeAttribute('role');
-      navigation.setAttribute('aria-label', 'Explorar niveles');
-      if (banner && bannerParent) bannerParent.append(banner);
-    }
-    select(active);
-  };
-  section.addEventListener('cedro:step', event => {
-    if (!ready) return;
-    const index = active + event.detail.direction;
-    if (index < 0 || index >= panels.length) return;
-    event.preventDefault();
-    select(index, { updateHash: true });
-  });
+  }
   section.addEventListener('cedro:select-level', event => {
-    const index = panels.findIndex(panel => panel.id === event.detail.id);
+    const index = panels.findIndex(panel => panel.id === event.detail?.id);
     if (index >= 0) select(index);
   });
   section.addEventListener('cedro:sceneenter', event => {
-    const requested = panels.findIndex(panel => panel.id === event.detail.targetId);
-    select(requested >= 0 ? requested : event.detail.source === 'scroll' && event.detail.direction < 0 ? panels.length - 1 : 0);
+    const index = panels.findIndex(panel => panel.id === event.detail?.targetId);
+    if (index >= 0) select(index);
   });
-  navigation.addEventListener('keydown', event => {
-    if (!ready || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+  curtains.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && selected >= 0) {
+      event.preventDefault();
+      const index = selected;
+      select(-1, true);
+      triggers[index].focus({ preventScroll: true });
+      return;
+    }
+    const index = triggers.indexOf(event.target);
+    if (index < 0 || !['ArrowLeft', 'ArrowRight', 'Home', 'End', 'Escape'].includes(event.key)) return;
     event.preventDefault();
-    const index = event.key === 'Home' ? 0 : event.key === 'End' ? panels.length - 1 : active + (event.key === 'ArrowLeft' ? -1 : 1);
-    select(index, { focus: true, updateHash: true });
+    if (event.key === 'Escape') { select(-1, true); return; }
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? triggers.length - 1
+      : (index + (event.key === 'ArrowRight' ? 1 : -1) + triggers.length) % triggers.length;
+    triggers[next].focus({ preventScroll: true });
   });
-  previous.addEventListener('click', () => select(active - 1, { updateHash: true }));
-  next.addEventListener('click', () => select(active + 1, { updateHash: true }));
-  document.addEventListener('cedro:ready', configure);
-  configure();
+  select(-1);
 })();

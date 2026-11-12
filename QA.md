@@ -55,3 +55,14 @@ Las pruebas de tamaño se hicieron en navegador, sin dispositivos físicos. No s
 - En 844 × 390 se desactiva el modo de escenas: los cinco niveles y las 14 preguntas nativas quedan disponibles en lectura continua, sin recortes.
 - Redimensionamiento, modo oscuro, controles de teclado, enlaces profundos y lectura de contenido largo revisados. Los gestos táctiles se revisaron en el código; no se usó dispositivo físico.
 - `node --check` pasó para `script.js`, `stack.js`, `levels.js` y `faq-reel.js`. No se observaron errores de la aplicación en consola durante las pruebas.
+
+## Vista previa de cortinas y preguntas (12 de noviembre)
+
+- Cambios locales en `preview/cortinas-preguntas`; sin publicación ni subida a GitHub por petición del usuario.
+- Cortinas inspeccionadas en 1366 × 900 y 390 × 844. Cinco controles visibles y sin desbordamiento horizontal.
+- Clic en Maternal abre una sola cortina; clic en Preescolar deja cuatro contenidos ocultos y uno abierto. La imagen abierta elimina el filtro de saturación/grises.
+- Un gesto de rueda continuó a Talleres manteniendo Preescolar seleccionado: el scroll no cambia el nivel.
+- La lista FAQ conserva las 14 preguntas, con cero respuestas abiertas al inicio. En escritorio se muestran varias filas simultáneas.
+- La rueda dentro de la lista cambió su scroll de 0 a 264 px, manteniendo el scroll de página en 3216 px y cero respuestas abiertas.
+- Clic en una pregunta abrió una respuesta y amplió su texto a 22.5 px frente a 15 px de las demás. Clic en otra mantuvo una sola abierta; repetir el clic dejó cero abiertas.
+- Revisión independiente del foco, teclado y alcance del scroll sin bloqueos. `node --check` pasó para los scripts modificados.
