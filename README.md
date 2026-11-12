@@ -2,7 +2,7 @@
 
 Recreación del sitio público del Centro Educativo El Cedro, Cuautla, Morelos, con una presentación moderna, adaptable y accesible. Conserva el proyecto educativo, los cinco niveles de Maternal a Bachillerato CCH UNAM, los talleres, las preguntas frecuentes y los canales de contacto.
 
-Vista previa local del 12 de noviembre de 2026: las cortinas de niveles y la nueva lista de preguntas están pendientes de revisión y aprobación antes de publicarse. Esta copia se trabaja en la rama local `preview/cortinas-preguntas`.
+Actualización aprobada el 12 de noviembre de 2026: cortinas de niveles por clic, lista de preguntas con scroll local y talleres con fotografías alineadas y contenido compacto. La rama `main` es la fuente de publicación en GitHub Pages.
 
 ## Ver el sitio localmente
 

@@ -74,4 +74,4 @@ Las pruebas de tamaño se hicieron en navegador, sin dispositivos físicos. No s
 - En 1170 × 758: contenido cerrado de 592 px dentro de una zona de 592 px, sin scroll interno; el bloque de horarios y contacto queda visible.
 - En 1366 × 900: contenido de 715 px dentro de una zona de 715 px; las tres fotos comparten coordenadas superior e inferior.
 - La galería desplegable mantiene la zona de lectura desplazable cuando se abre. No se ocultó contenido ni se desactivó el desbordamiento accesible.
-- Los cambios permanecen locales y pendientes de aprobación.
+- Los cambios permanecieron locales durante la revisión. El usuario aprobó su publicación el 12 de noviembre de 2026.

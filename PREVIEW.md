@@ -1,12 +1,13 @@
-# Vista previa pendiente de aprobación
+# Revisión aprobada para publicación
 
 12 de noviembre de 2026.
 
 - Niveles: http://127.0.0.1:4173/#niveles
 - Preguntas: http://127.0.0.1:4173/#faq
 - Talleres con fotos alineadas y espacio compacto: http://127.0.0.1:4173/#talleres
-- Rama local: `preview/cortinas-preguntas`.
-- Los cambios de esta vista previa no se han subido ni publicado.
+- Rama de revisión: `preview/cortinas-preguntas`.
+- El usuario aprobó publicar los cambios el 12 de noviembre de 2026.
+- Sitio público: https://xisver.github.io/el-cedro-web/
 
 Las cinco cortinas se abren con clic, Enter o Espacio. Se puede cambiar de control con Tab o las flechas izquierda/derecha; Escape cierra la cortina abierta. Las imágenes cerradas conservan un filtro de color y la abierta se aclara.
 
