@@ -4,6 +4,7 @@
 
 - Niveles: http://127.0.0.1:4173/#niveles
 - Preguntas: http://127.0.0.1:4173/#faq
+- Talleres con fotos alineadas y espacio compacto: http://127.0.0.1:4173/#talleres
 - Rama local: `preview/cortinas-preguntas`.
 - Los cambios de esta vista previa no se han subido ni publicado.
 

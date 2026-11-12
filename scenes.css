@@ -34,17 +34,32 @@
 .scene-ready .values .value-label { margin-bottom:9px; }
 .scene-ready .values h3 { font-size:25px; }
 .scene-ready .values p { margin-top:10px; font-size:11px; }
-.scene-ready .workshop-gallery { margin-bottom:22px; }
-.scene-ready .workshop-gallery img { height:clamp(180px,24vh,280px); }
-.scene-ready .workshop-gallery figure:nth-child(2) { padding-top:20px; }
-.scene-ready .workshop-gallery figure:nth-child(3) { padding-top:40px; }
-.scene-ready .more-gallery { margin-top:20px; }
-.scene-ready .workshops-footer { margin-top:18px; }
+.scene-ready #talleres .section-heading { margin-bottom:20px; }
+.scene-ready .workshop-gallery { margin-bottom:12px; }
+.scene-ready .workshop-gallery img { height:clamp(140px,22vh,220px); }
+.scene-ready .workshop-gallery figure:nth-child(2),
+.scene-ready .workshop-gallery figure:nth-child(3) { padding-top:0; }
+.scene-ready #talleres .workshop-gallery figcaption { padding-top:8px; }
+.scene-ready #talleres .taller-card { padding-top:12px; }
+.scene-ready #talleres .taller-card .chips { margin-top:8px; }
+.scene-ready .more-gallery { margin-top:12px; padding-block:8px; }
+.scene-ready .workshops-footer { margin-top:10px; }
 .scene-ready .contact-heading h2 { font-size:clamp(36px,4vw,60px); }
 .scene-ready .contact-heading>p:not(.eyebrow) { margin-top:16px; font-size:13px; }
 .scene-ready .contact-heading>.button { margin-top:20px; }
 .scene-ready .contact-grid { margin-top:32px; gap:55px; }
 .scene-ready .map-frame,.scene-ready .map-frame iframe { min-height:260px; }
+@media (min-width:1000px) and (max-height:850px) {
+  .scene-ready #talleres { padding-block:22px; }
+  .scene-ready #talleres .section-heading { margin-bottom:16px; }
+  .scene-ready #talleres .eyebrow { margin-bottom:8px; font-size:9px; }
+  .scene-ready #talleres .workshop-gallery img { height:clamp(125px,19vh,170px); }
+  .scene-ready #talleres .workshop-gallery figcaption { padding-top:7px; font-size:11px; }
+  .scene-ready #talleres .taller-card { padding-top:10px; }
+  .scene-ready #talleres .taller-card h3 { font-size:13px; }
+  .scene-ready #talleres .taller-card .chips { margin-top:7px; }
+  .scene-ready #talleres .taller-card .chip { font-size:10.5px; line-height:1.5; padding-block:1px; }
+}
 @media (max-width:999px) { .scene-ready #primary-navigation { top:78px; } }
 @media (max-width:700px) {
   .scene-ready .card-stack { --stack-gap:18px; padding:8px; }

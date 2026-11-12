@@ -66,3 +66,12 @@ Las pruebas de tamaño se hicieron en navegador, sin dispositivos físicos. No s
 - La rueda dentro de la lista cambió su scroll de 0 a 264 px, manteniendo el scroll de página en 3216 px y cero respuestas abiertas.
 - Clic en una pregunta abrió una respuesta y amplió su texto a 22.5 px frente a 15 px de las demás. Clic en otra mantuvo una sola abierta; repetir el clic dejó cero abiertas.
 - Revisión independiente del foco, teclado y alcance del scroll sin bloqueos. `node --check` pasó para los scripts modificados.
+
+## Ajuste de Talleres (vista previa del 12 de noviembre)
+
+- Las tres fotos se alinean por arriba y por abajo, eliminando el escalonado.
+- Se redujeron márgenes, altura de imagen y espaciado de listas en escritorio de poca altura.
+- En 1170 × 758: contenido cerrado de 592 px dentro de una zona de 592 px, sin scroll interno; el bloque de horarios y contacto queda visible.
+- En 1366 × 900: contenido de 715 px dentro de una zona de 715 px; las tres fotos comparten coordenadas superior e inferior.
+- La galería desplegable mantiene la zona de lectura desplazable cuando se abre. No se ocultó contenido ni se desactivó el desbordamiento accesible.
+- Los cambios permanecen locales y pendientes de aprobación.

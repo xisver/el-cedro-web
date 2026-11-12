@@ -919,10 +919,10 @@ blockquote cite {
   border-radius:5px;
 }
 .workshop-gallery figure:nth-child(2) {
-  padding-top:40px;
+  padding-top:0;
 }
 .workshop-gallery figure:nth-child(3) {
-  padding-top:80px;
+  padding-top:0;
 }
 .workshop-gallery figcaption {
   display:flex;
